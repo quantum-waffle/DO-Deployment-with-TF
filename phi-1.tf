@@ -45,3 +45,14 @@ resource "digitalocean_project" "playground" {
   environment = "Production"
   resources   = [digitalocean_droplet.ubuntu-PHI-01.urn]
 }
+
+data "cloudflare_zone" "this" {
+  name = "${var.domain}"
+}
+resource "cloudflare_record" "tf" {
+  zone_id = data.cloudflare_zone.this.id
+  name    = "tf"
+  value   = "${digitalocean_droplet.ubuntu-PHI-01.ipv4_address}"
+  type    = "A"
+  proxied = "true"
+}
