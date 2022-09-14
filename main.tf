@@ -1,5 +1,5 @@
 # We define the Droplet specs
-resource "digitalocean_droplet" "ubuntu-PHI-01" {
+resource "digitalocean_droplet" "phishing_droplet" {
     image = "${var.droplet_os}"
     name = "${var.droplet_name}"
     region = "${var.droplet_region}"
@@ -49,7 +49,7 @@ data "digitalocean_project" "DO_project_name" {
 resource "digitalocean_project_resources" "terraform_rs" {
   project = data.digitalocean_project.DO_project_name.id
   resources = [
-     digitalocean_droplet.ubuntu-PHI-01.urn
+     digitalocean_droplet.phishing_droplet.urn
   ]
 }
 
@@ -59,7 +59,7 @@ resource "digitalocean_project" "terraformProject" {
   description = "Phishing Droplets created using infrastructure as code."
   purpose     = "Phishing"
   environment = "Production"
-  resources   = [digitalocean_droplet.ubuntu-PHI-01.urn]
+  resources   = [digitalocean_droplet.phishing_droplet.urn]
 } */
 
 # DNS record creation in Cloudflare 
@@ -69,7 +69,7 @@ data "cloudflare_zone" "this" {
 resource "cloudflare_record" "record" {
   zone_id = data.cloudflare_zone.this.id
   name    = "${var.phishing_subdomain}"
-  value   = "${digitalocean_droplet.ubuntu-PHI-01.ipv4_address}"
+  value   = "${digitalocean_droplet.phishing_droplet.ipv4_address}"
   type    = "${var.DNS_record_type}"
   proxied = "${var.DNS_is_proxied}"
 }
