@@ -4,7 +4,7 @@ resource "digitalocean_droplet" "ubuntu-PHI-01" {
     name = "${var.droplet_name}"
     region = "${var.droplet_region}"
     size = "${var.droplet_size}"
-    tags = ["${digitalocean_tag.purpose_tag.id}", "${digitalocean_tag.analyst_name_tag.id}"]
+    tags = ["${digitalocean_tag.analyst_name_tag.id}","${digitalocean_tag.purpose_tag.id}"]
     ssh_keys = [
       data.digitalocean_ssh_key.terraform_ssh_key.id, 
       data.digitalocean_ssh_key.analyst_ssh_Key.id, 
