@@ -30,4 +30,4 @@ override.tf.json
 commands.sh
 .terraform.lock.hcl
 variables.tf
-testing.tfvars
+secrets.tfvars

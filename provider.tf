@@ -13,17 +13,25 @@ terraform {
   }
 }
 
-## Accessing DO token
+# Passing DigitalOcean token to provider
 provider "digitalocean" {
   token = var.do_token
 }
 
+# Passing Cloudflare token to provider
 provider "cloudflare" {
   api_token = var.cloudflare_api_token
 }
 
+# SSH key name inside DigitalOcean for loggin in to the droplet
+data "digitalocean_ssh_key" "terraform_ssh_key" {
+  name = "${var.terraform_ssh_key}"
+}
 
-## SSH key name inside DO
-data "digitalocean_ssh_key" "CONS-Terraform-01" {
-  name = "CONS-Terraform-01"
+data "digitalocean_ssh_key" "analyst_ssh_Key" {
+  name = "${var.analyst_ssh_key}"
+}
+
+data "digitalocean_ssh_key" "CONS_ssh_key" {
+  name = "${var.CONS_ssh_key}"
 }
