@@ -31,3 +31,4 @@ commands.sh
 .terraform.lock.hcl
 variables.tf
 secrets.tfvars
+.DS_Store
