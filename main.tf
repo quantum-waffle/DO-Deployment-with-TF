@@ -23,10 +23,9 @@ connection {
 # Run code inside the droplet
 provisioner "remote-exec" {
     inline = [
-      # install nginx
-      "sudo apt update",
-      "sudo apt install -y python3-venv git", 
-      "git clone https://oauth2:${var.gitlab_token}@${var.gitlab_project}", 
+      "sudo apt update -y",
+      "sudo DEBIAN_FRONTEND=noninteractive apt install -y python3.10-venv git", 
+      "git clone https://oauth2:${var.gitlab_token}@${var.gitlab_project} phi-serverls", 
       "python3 -m venv venv", 
       "venv/bin/pip install -r phi-server/requirements.txt"
     ]
