@@ -25,7 +25,7 @@ provisioner "remote-exec" {
     inline = [
       "sudo apt update -y",
       "sudo DEBIAN_FRONTEND=noninteractive apt install -y python3.10-venv git", 
-      "git clone https://oauth2:${var.gitlab_token}@${var.gitlab_project} phi-serverls", 
+      "git clone https://oauth2:${var.gitlab_token}@${var.gitlab_project} phi-server", 
       "python3 -m venv venv", 
       "venv/bin/pip install -r phi-server/requirements.txt"
     ]
